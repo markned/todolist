@@ -1,0 +1,71 @@
+<mvc:View 
+	controllerName="todolist.controller.ToDo"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable">
+	
+	<Page id='idToDoListPage' title="{i18n>title}">
+		<VBox id="toDoVBox" class="sapUiSmallMargin">	
+			<NotificationList 
+				id="toDoList"
+				items="{ path: '/Tasks', 
+						 sorter: [{
+							path: 'status_code'
+							},
+							{
+							path: 'modifiedAt',
+							descending: true
+							}],
+							parameters: {
+    						expand: 'status'
+  							}
+						}" >
+
+				<!-- <layoutData>
+					<FlexItemData id="layoutData" maxWidth="600px" />
+				</layoutData>	 -->
+
+				<headerToolbar>
+					<OverflowToolbar id="toDoToolbar">
+						<Button id="editButton" press="onOpenInsertDialog" icon="sap-icon://add" text="Add task" type="Emphasized">
+							<customData>
+								<core:CustomData key="dialogName" value="InsertTaskDialog" />
+								<core:CustomData key="actionName" value="Insert" />
+							</customData>
+						</Button>
+					</OverflowToolbar>
+				</headerToolbar>
+		
+				<NotificationListItem id="toDoListItem"
+					title="{title}"
+					description="{status/descr}"
+					showCloseButton="false"
+					datetime="{
+								path: 'modifiedAt',
+								type: 'sap.ui.model.odata.type.DateTimeOffset'
+								}"
+					unread="false"
+					close=".onItemClose"
+					authorName="{modifiedBy}"
+					priority="{ path: 'status_code', 
+								formatter: '.formatter.iconPriority' 
+							}"
+					>
+					<buttons>
+						<Button id="EditButton" icon="sap-icon://edit" text="Edit" press="onOpenInsertDialog" >
+						<customData>
+                            <core:CustomData key="dialogName" value="EditTaskDialog" />
+                            <core:CustomData key="actionName" value="Edit" />
+                        </customData>
+						</Button>
+						<Button id="DeleteButton" icon="sap-icon://delete" text="Delete" press="onDelete" />
+					</buttons>
+				</NotificationListItem>
+
+			</NotificationList>
+		</VBox>
+	</Page>
+</mvc:View>

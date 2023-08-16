@@ -1,0 +1,25 @@
+{
+    "[development]": {
+        "auth": {
+            "passport": {
+                "strategy": "mock",
+                "users": {
+                    "mark": {
+                        "password": "SAP",
+                        "ID": "mark",
+                        "roles": [
+                            "User"
+                        ]
+                    },
+                    "ivan": {
+                        "password": "SAP",
+                        "ID": "ivan",
+                        "roles": [
+                            "User"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

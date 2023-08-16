@@ -1,0 +1,36 @@
+{
+    "welcomeFile": "/todolist/webapp/index.html",
+    "authenticationMethod": "route",
+    "logout": {
+      "logoutEndpoint": "/logout",
+      "logoutPage": "/logout.html"
+    },
+    "routes": [
+     {
+        "source": "^/app/(.*)$",
+        "cacheControl": "no-cache, no-store, must-revalidate",
+        "target": "$1",
+        "localDir": "./",
+        "authenticationType": "xsuaa",
+        "identityProvider": "httpshcm10preview.sapsf.comsfidpSAML"
+      },
+      {
+        "source": "^/odata/v4/(.*)$",
+        "target": "$1",
+        "destination": "env_destination_srv_backend_service",
+        "authenticationType": "xsuaa"
+      },
+      {
+        "source": "^/admin",
+        "localDir": "./",
+        "authenticationType": "xsuaa",
+        "identityProvider": "sap.default"
+      },
+      {
+        "source": "^/(.*)$",
+        "localDir": "resources",
+        "authenticationType": "xsuaa",
+        "identityProvider": "sap.default"
+      }
+    ]
+  }
